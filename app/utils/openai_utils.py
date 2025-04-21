@@ -1,10 +1,9 @@
 import streamlit as st
-import random
-
 USE_MOCK = True  # Change this to False when you're ready to use the real API
 
 def generate_metadata(idea):
     if USE_MOCK:
+       import random
          # Simulate a realistic YouTube AI assistant
     idea_snippets = idea.split()
     topic = " ".join(idea_snippets[:4]).title()
