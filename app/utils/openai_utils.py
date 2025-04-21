@@ -1,10 +1,7 @@
-import streamlit as st
-USE_MOCK = True  # Change this to False when you're ready to use the real API
+import random
 
 def generate_metadata(idea):
-    if USE_MOCK:
-       import random
-         # Simulate a realistic YouTube AI assistant
+    # Simulate a realistic YouTube AI assistant
     idea_snippets = idea.split()
     topic = " ".join(idea_snippets[:4]).title()
 
@@ -34,18 +31,4 @@ def generate_metadata(idea):
         "title": random.choice(titles),
         "description": random.choice(descriptions),
         "keywords": random.choice(keyword_sets)
-        }
-    else:
-        import openai
-        openai.api_key = st.secrets["openai"]["OPENAI_API_KEY"]
-        response = openai.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant..."},
-                {"role": "user", "content": idea},
-            ]
-        )
-        content = response.choices[0].message.content
-        # Parse or return based on your formatting
-        return eval(content)
-
+    }
